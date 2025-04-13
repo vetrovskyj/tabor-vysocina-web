@@ -42,12 +42,12 @@ const GallerySlider = () => {
   };
 
   const [albumImages, setAlbumImages] = useState({});
+  const [albumImagesLoading, setAlbumImagesLoading] = useState(true);
 
   useEffect(() => {
     const fetchAlbumImages = async () => {
       const images = {};
       for (let album of albums) {
-        console.log(album)
         if (album.coverPhotoMediaItemId) {
           const imageUrl = await getAlbumCoverImageUrl(album.coverPhotoMediaItemId);
           if (imageUrl) {
@@ -56,14 +56,15 @@ const GallerySlider = () => {
         }
       }
       setAlbumImages(images);
+      setAlbumImagesLoading(false); // ✅ Set loading to false when done
     };
-
+  
     if (albums.length > 0) {
       fetchAlbumImages();
     }
   }, [albums]);
 
-  if (loading)
+  if (loading || albumImagesLoading)
     return (
       <div className="loader-container">
         <div className="loader"></div>

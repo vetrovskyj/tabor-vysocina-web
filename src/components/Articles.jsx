@@ -69,7 +69,11 @@ class Articles extends React.Component {
                   <span className="article-date">{post.date}</span>
                 </p>
                 <p className="text_vyletu">
-                  {post.content}
+                  {/<[a-z][\s\S]*>/i.test(post.content) ? (
+                    null
+                  ) : (
+                    post.content
+                  )}
                   <br />
                   <br />
                   <Link

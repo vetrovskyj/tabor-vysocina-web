@@ -37,7 +37,7 @@ export default function ArticlePreview() {
           <div className="columns">
             <div>
               <h1 className="article-post-heading">{post.title}</h1>
-              <p>{post.content}</p>
+              <p dangerouslySetInnerHTML={{ __html: post.content }} />
               <img
                 src={post.imageUrl.length > 0 ? post.imageUrl : logo}
                 alt="Article"

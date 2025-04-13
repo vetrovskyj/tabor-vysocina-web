@@ -51,16 +51,9 @@ export default function PhotoAlbum() {
     }
   }, [isOpen]);
 
-  // Update the URL when the Lightbox is opened or navigated
   useEffect(() => {
     if (isOpen && lightboxIndex !== null) {
-      const photo = photos[lightboxIndex];
-      // Change the URL to reflect the current image being viewed
-      window.history.pushState(
-        null,
-        "",
-        `${window.location.pathname}?photoId=${photo.id}`
-      );
+      console.log(photos[lightboxIndex].id);
     }
   }, [isOpen, lightboxIndex, photos]);
 
@@ -141,20 +134,10 @@ export default function PhotoAlbum() {
                     const newIndex =
                       (lightboxIndex + photos.length - 1) % photos.length;
                     setLightboxIndex(newIndex);
-                    window.history.pushState(
-                      null,
-                      "",
-                      `${window.location.pathname}?photoId=${photos[newIndex].id}`
-                    );
                   }}
                   onMoveNextRequest={() => {
                     const newIndex = (lightboxIndex + 1) % photos.length;
                     setLightboxIndex(newIndex);
-                    window.history.pushState(
-                      null,
-                      "",
-                      `${window.location.pathname}?photoId=${photos[newIndex].id}`
-                    );
                   }}
                 />
               )}
