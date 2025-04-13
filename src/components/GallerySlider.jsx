@@ -27,44 +27,7 @@ const GallerySlider = () => {
       });
   }, []);
 
-  const getAlbumCoverImageUrl = async (mediaItemId) => {
-    try {
-      const response = await fetch(
-        `https://google-photos-api-5ivj.onrender.com/photo?mediaItemId=${mediaItemId}`
-      );
-      const data = await response.json();
-      console.log(data)
-      return data.imageUrl; // The image URL returned from the /photo endpoint
-    } catch (error) {
-      console.error("Error fetching photo by mediaItemId:", error);
-      return null;
-    }
-  };
-
-  const [albumImages, setAlbumImages] = useState({});
-  const [albumImagesLoading, setAlbumImagesLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchAlbumImages = async () => {
-      const images = {};
-      for (let album of albums) {
-        if (album.coverPhotoMediaItemId) {
-          const imageUrl = await getAlbumCoverImageUrl(album.coverPhotoMediaItemId);
-          if (imageUrl) {
-            images[album.id] = imageUrl;
-          }
-        }
-      }
-      setAlbumImages(images);
-      setAlbumImagesLoading(false); // ✅ Set loading to false when done
-    };
-  
-    if (albums.length > 0) {
-      fetchAlbumImages();
-    }
-  }, [albums]);
-
-  if (loading || albumImagesLoading)
+  if (loading)
     return (
       <div className="loader-container">
         <div className="loader"></div>
@@ -106,7 +69,7 @@ const GallerySlider = () => {
                   to={`/galerie/${encodeURIComponent(album.title)}`}
                   state={{ album }}
                 >
-                  <img alt={album.title} src={albumImages[album.id] || logo} />
+                  <img alt={album.title} src={album.highResCoverPhoto || logo} />
                   <div className="gallery-carousel-text">
                     {album.title.replace(keyword, "")}
                   </div>
@@ -125,7 +88,7 @@ const GallerySlider = () => {
             >
               <img
                 alt={filteredAlbums[0].title}
-                src={albumImages[filteredAlbums[0].id] || logo}
+                src={filteredAlbums[0].highResCoverPhoto || logo}
               />
               <div className="gallery-carousel-text">
                 {filteredAlbums[0].title.replace(keyword, "")}
