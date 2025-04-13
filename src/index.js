@@ -1,17 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PhotoAlbum from "./pages/photoalbum";
+import Home from "./pages/index";
+import Informace from "./pages/informace/index";
+import Aktuality from "./pages/aktuality/index";
+import Galerie from "./pages/galerie/index";
+import Kontakt from "./pages/kontakt/index";
+import GalleryAuth from "./pages/gallery-auth/GalleryAuth";
+import ArticlePreview from "./pages/clanek";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/informace" element={<Informace />} />
+        <Route path="/aktuality" element={<Aktuality />} />
+        <Route path="/galerie" element={<Galerie />} />
+        <Route path="/kontakt" element={<Kontakt />} />
+        <Route path="/galerie/:albumTitle" element={<PhotoAlbum />} />
+        <Route path="/aktuality/:articleTitle" element={<ArticlePreview />} />
+        <Route path="/galerie/auth" element={<GalleryAuth />} />
+      </Routes>
+    </Router>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
