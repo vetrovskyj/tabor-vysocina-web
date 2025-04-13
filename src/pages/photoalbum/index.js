@@ -7,13 +7,12 @@ import Helmet from "react-helmet";
 
 export default function PhotoAlbum() {
   const location = useLocation();
-  console.log(location.state);
   const { album } = location.state || {};
-  console.log(album);
   const [photos, setPhotos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const imagesPerPage = 52;
+  const [totalPages, setTotalPages] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [nextPageToken, setNextPageToken] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -25,29 +24,45 @@ export default function PhotoAlbum() {
   const fetchAlbumPhotos = async (albumId) => {
     try {
       const response = await fetch(
-        `https://google-photos-api-5ivj.onrender.com/photos?albumId=${albumId}`
+        `https://google-photos-api-5ivj.onrender.com/photos?albumId=${albumId}&pageToken=${nextPageToken}`
       );
       const data = await response.json();
-      setPhotos(data);
 
-      // Modify the baseUrl to request original resolution images
-      const updatedData = data.map((photo) => {
-        // Assuming the `baseUrl` is something like: 'https://lh3.googleusercontent.com/d/album_image_base_url'
-        // You can append `?sz=original` or similar depending on the API specification
-        const highResUrl = photo.baseUrl + "=d"; // Example of requesting higher resolution image
-        return { ...photo, highResUrl: highResUrl };
-      });
+      console.log(data)
 
-      setPhotos(updatedData);
+      const updatedData = data.mediaItems.map((photo) => ({
+        ...photo,
+        highResUrl: photo.baseUrl + "=d",
+      }));
+
+      setPhotos((prevPhotos) => [...prevPhotos, ...updatedData]);
+      setNextPageToken(data.nextPageToken || "");
     } catch (error) {
       console.error("Failed to fetch album photos", error);
     }
   };
 
-  const indexOfLastImage = currentPage * imagesPerPage;
-  const indexOfFirstImage = indexOfLastImage - imagesPerPage;
-  const currentImages = photos.slice(indexOfFirstImage, indexOfLastImage);
-  const totalPages = Math.ceil(photos.length / imagesPerPage);
+  // Manage body ARIA state based on the Lightbox status
+  useEffect(() => {
+    if (isOpen) {
+      document.body.setAttribute("aria-hidden", "true");
+    } else {
+      document.body.removeAttribute("aria-hidden");
+    }
+  }, [isOpen]);
+
+  // Update the URL when the Lightbox is opened or navigated
+  useEffect(() => {
+    if (isOpen && lightboxIndex !== null) {
+      const photo = photos[lightboxIndex];
+      // Change the URL to reflect the current image being viewed
+      window.history.pushState(
+        null,
+        "",
+        `${window.location.pathname}?photoId=${photo.id}`
+      );
+    }
+  }, [isOpen, lightboxIndex, photos]);
 
   if (!album) {
     return <div>Album not found</div>;
@@ -74,31 +89,17 @@ export default function PhotoAlbum() {
         <div className="gallery-container">
           {photos.length > 0 ? (
             <>
-              {/* Pagination */}
-              <div className="pagination">
-                {Array.from({ length: totalPages }, (_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentPage(index + 1)}
-                    className={
-                      index + 1 === currentPage
-                        ? "pagination-page active"
-                        : "pagination-page"
-                    }
-                  >
-                    {index + 1}
-                  </button>
-                ))}
-              </div>
               <div className="grid">
-                {currentImages.map((photo, index) => (
-                  <div key={photo.id} className="grid-item">
+                {photos.map((photo, index) => (
+                  <div
+                    key={photo.id || `${index}-${photo.baseUrl}`}
+                    className="grid-item"
+                  >
                     <img
                       src={photo.baseUrl}
                       alt="Album Photo"
                       width="200"
                       onClick={() => {
-                        console.log("Opening lightbox with index:", index);
                         setLightboxIndex(index);
                         setIsOpen(true);
                       }}
@@ -107,33 +108,54 @@ export default function PhotoAlbum() {
                   </div>
                 ))}
               </div>
+
+              {nextPageToken && (
+                <div
+                  className="load-more-container"
+                  style={{ textAlign: "center", margin: "2rem 0" }}
+                >
+                  <button
+                    onClick={() => fetchAlbumPhotos(album.id)}
+                    className="load-more-button"
+                  >
+                    Načti další
+                  </button>
+                </div>
+              )}
+
               {isOpen && (
                 <Lightbox
-                  mainSrc={currentImages[lightboxIndex]?.highResUrl}
+                  mainSrc={photos[lightboxIndex]?.highResUrl}
                   nextSrc={
-                    currentImages[(lightboxIndex + 1) % currentImages.length]
-                      ?.highResUrl
+                    photos[(lightboxIndex + 1) % photos.length]?.highResUrl
                   }
                   prevSrc={
-                    currentImages[
-                      (lightboxIndex + currentImages.length - 1) %
-                        currentImages.length
-                    ]?.highResUrl
+                    photos[(lightboxIndex + photos.length - 1) % photos.length]
+                      ?.highResUrl
                   }
                   onCloseRequest={() => {
-                    console.log("Closing lightbox");
                     setLightboxIndex(null);
                     setIsOpen(false);
                   }}
-                  onMovePrevRequest={() =>
-                    setLightboxIndex(
-                      (lightboxIndex + currentImages.length - 1) %
-                        currentImages.length
-                    )
-                  }
-                  onMoveNextRequest={() =>
-                    setLightboxIndex((lightboxIndex + 1) % currentImages.length)
-                  }
+                  onMovePrevRequest={() => {
+                    const newIndex =
+                      (lightboxIndex + photos.length - 1) % photos.length;
+                    setLightboxIndex(newIndex);
+                    window.history.pushState(
+                      null,
+                      "",
+                      `${window.location.pathname}?photoId=${photos[newIndex].id}`
+                    );
+                  }}
+                  onMoveNextRequest={() => {
+                    const newIndex = (lightboxIndex + 1) % photos.length;
+                    setLightboxIndex(newIndex);
+                    window.history.pushState(
+                      null,
+                      "",
+                      `${window.location.pathname}?photoId=${photos[newIndex].id}`
+                    );
+                  }}
                 />
               )}
             </>

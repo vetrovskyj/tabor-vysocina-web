@@ -30,6 +30,21 @@ header {
     flex: 1
 }
 
+.load-more-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.load-more-button:hover {
+    background-color: #125aa1;
+}
+
 .loader-container {
     display: flex;
     align-items: center;

@@ -4,6 +4,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import logo from "../img/logo.png"
+
 const GallerySlider = () => {
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,6 +27,42 @@ const GallerySlider = () => {
       });
   }, []);
 
+  const getAlbumCoverImageUrl = async (mediaItemId) => {
+    try {
+      const response = await fetch(
+        `https://google-photos-api-5ivj.onrender.com/photo?mediaItemId=${mediaItemId}`
+      );
+      const data = await response.json();
+      console.log(data)
+      return data.imageUrl; // The image URL returned from the /photo endpoint
+    } catch (error) {
+      console.error("Error fetching photo by mediaItemId:", error);
+      return null;
+    }
+  };
+
+  const [albumImages, setAlbumImages] = useState({});
+
+  useEffect(() => {
+    const fetchAlbumImages = async () => {
+      const images = {};
+      for (let album of albums) {
+        console.log(album)
+        if (album.coverPhotoMediaItemId) {
+          const imageUrl = await getAlbumCoverImageUrl(album.coverPhotoMediaItemId);
+          if (imageUrl) {
+            images[album.id] = imageUrl;
+          }
+        }
+      }
+      setAlbumImages(images);
+    };
+
+    if (albums.length > 0) {
+      fetchAlbumImages();
+    }
+  }, [albums]);
+
   if (loading)
     return (
       <div className="loader-container">
@@ -45,6 +83,13 @@ const GallerySlider = () => {
       album.title.toLowerCase().includes(keyword)
     );
 
+    // Sort albums by year extracted from the title (newest first)
+    filteredAlbums.sort((a, b) => {
+      const yearA = a.title.replace(keyword, "").match(/\d{4}/)?.[0] || "0"; // Extract year from title
+      const yearB = b.title.replace(keyword, "").match(/\d{4}/)?.[0] || "0"; // Extract year from title
+      return yearB - yearA; // Newest first
+    });
+
     if (filteredAlbums.length === 0) return null;
 
     return (
@@ -60,7 +105,7 @@ const GallerySlider = () => {
                   to={`/galerie/${encodeURIComponent(album.title)}`}
                   state={{ album }}
                 >
-                  <img alt={album.title} src={album.coverPhotoBaseUrl} />
+                  <img alt={album.title} src={albumImages[album.id] || logo} />
                   <div className="gallery-carousel-text">
                     {album.title.replace(keyword, "")}
                   </div>
@@ -79,7 +124,7 @@ const GallerySlider = () => {
             >
               <img
                 alt={filteredAlbums[0].title}
-                src={filteredAlbums[0].coverPhotoBaseUrl}
+                src={albumImages[filteredAlbums[0].id] || logo}
               />
               <div className="gallery-carousel-text">
                 {filteredAlbums[0].title.replace(keyword, "")}

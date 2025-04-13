@@ -20,6 +20,7 @@ root.render(
         <Route path="/galerie" element={<Galerie />} />
         <Route path="/kontakt" element={<Kontakt />} />
         <Route path="/galerie/:albumTitle" element={<PhotoAlbum />} />
+        <Route path="/galerie/:albumTitle/:photoId" element={<PhotoAlbum />} />
         <Route path="/aktuality/:articleTitle" element={<ArticlePreview />} />
         <Route path="/galerie/auth" element={<GalleryAuth />} />
       </Routes>
