@@ -217,6 +217,10 @@ nav {
     object-fit: cover
 }
 
+.foto3 {
+    width: 100%;
+}
+
 .fa {
     font-size: 14px !important;
     display: flex !important
