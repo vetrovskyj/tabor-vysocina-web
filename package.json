@@ -1,6 +1,6 @@
 {
     "name": "tabor-vysocina-web",
-    "homepage": ".",
+    "homepage": "https://taborvysocina.cz",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
