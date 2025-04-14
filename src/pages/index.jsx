@@ -31,7 +31,7 @@ export const IndexPage = ({
       <div className="top-site">
         <div className="fotky">
           <div className="fotka">
-          <img src={cover} alt="foto3" />
+          <img className="cover-photo" src={cover} alt="foto3" />
           </div>
         </div>
         <div className="info">
