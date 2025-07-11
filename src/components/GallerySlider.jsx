@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import logo from "../img/logo.png"
+import logo from "../img/logo.png";
 
 const GallerySlider = () => {
   const [albums, setAlbums] = useState([]);
@@ -14,12 +14,10 @@ const GallerySlider = () => {
     fetch("https://google-photos-api-5ivj.onrender.com/albums")
       .then((response) => response.json())
       .then((data) => {
-        // Remove duplicates
         const uniqueAlbums = Array.from(
           new Map(data.map((album) => [album.id, album])).values()
         );
         setAlbums(uniqueAlbums);
-        console.log(albums);
         setLoading(false);
       })
       .catch((error) => {
@@ -27,6 +25,13 @@ const GallerySlider = () => {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    // This runs AFTER albums has been updated
+    if (albums.length > 0) {
+      console.log("Albums updated:", albums);
+    }
+  }, [albums]);
 
   if (loading)
     return (
@@ -70,7 +75,10 @@ const GallerySlider = () => {
                   to={`/galerie/${encodeURIComponent(album.name)}`}
                   state={{ album }}
                 >
-                  <img alt={album.name} src={album.starredFiles[0]?.previewUrl || logo} />
+                  <img
+                    alt={album.name}
+                    src={album.starredFiles[0]?.previewUrl || logo}
+                  />
                   <div className="gallery-carousel-text">
                     {album.name.replace(keyword, "")}
                   </div>
