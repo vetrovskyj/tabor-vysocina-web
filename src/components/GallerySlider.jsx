@@ -19,6 +19,7 @@ const GallerySlider = () => {
           new Map(data.map((album) => [album.id, album])).values()
         );
         setAlbums(uniqueAlbums);
+        console.log(albums);
         setLoading(false);
       })
       .catch((error) => {
@@ -42,15 +43,15 @@ const GallerySlider = () => {
     slidesToScroll: 1,
   };
 
-  const filterAndRenderAlbums = (keyword, title) => {
+  const filterAndRenderAlbums = (keyword, name) => {
     const filteredAlbums = albums.filter((album) =>
-      album.title.toLowerCase().includes(keyword)
+      album.name.toLowerCase().includes(keyword)
     );
 
-    // Sort albums by year extracted from the title (newest first)
+    // Sort albums by year extracted from the name (newest first)
     filteredAlbums.sort((a, b) => {
-      const yearA = a.title.replace(keyword, "").match(/\d{4}/)?.[0] || "0"; // Extract year from title
-      const yearB = b.title.replace(keyword, "").match(/\d{4}/)?.[0] || "0"; // Extract year from title
+      const yearA = a.name.replace(keyword, "").match(/\d{4}/)?.[0] || "0"; // Extract year from name
+      const yearB = b.name.replace(keyword, "").match(/\d{4}/)?.[0] || "0"; // Extract year from name
       return yearB - yearA; // Newest first
     });
 
@@ -58,20 +59,20 @@ const GallerySlider = () => {
 
     return (
       <div className="years-section">
-        <h2>{title}</h2>
+        <h2>{name}</h2>
         {filteredAlbums.length > 1 ? (
           <Slider {...settings}>
             {filteredAlbums.map((album) => (
               <div key={album.id} className="years-item-container">
                 <Link
                   className="gallery-carousel-container"
-                  key={album.title}
-                  to={`/galerie/${encodeURIComponent(album.title)}`}
+                  key={album.name}
+                  to={`/galerie/${encodeURIComponent(album.name)}`}
                   state={{ album }}
                 >
-                  <img alt={album.title} src={album.highResCoverPhoto || logo} />
+                  <img alt={album.name} src={album.starredFiles[0]?.previewUrl || logo} />
                   <div className="gallery-carousel-text">
-                    {album.title.replace(keyword, "")}
+                    {album.name.replace(keyword, "")}
                   </div>
                 </Link>
               </div>
@@ -82,16 +83,16 @@ const GallerySlider = () => {
           <div className="years-item-container">
             <Link
               className="gallery-carousel-container"
-              key={filteredAlbums[0].title}
-              to={`/galerie/${encodeURIComponent(filteredAlbums[0].title)}`}
+              key={filteredAlbums[0].name}
+              to={`/galerie/${encodeURIComponent(filteredAlbums[0].name)}`}
               state={{ album: filteredAlbums[0] }}
             >
               <img
-                alt={filteredAlbums[0].title}
+                alt={filteredAlbums[0].name}
                 src={filteredAlbums[0].highResCoverPhoto || logo}
               />
               <div className="gallery-carousel-text">
-                {filteredAlbums[0].title.replace(keyword, "")}
+                {filteredAlbums[0].name.replace(keyword, "")}
               </div>
             </Link>
           </div>

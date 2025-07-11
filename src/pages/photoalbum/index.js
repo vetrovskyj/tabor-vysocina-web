@@ -30,10 +30,7 @@ export default function PhotoAlbum() {
 
       console.log(data)
 
-      const updatedData = data.mediaItems.map((photo) => ({
-        ...photo,
-        highResUrl: photo.baseUrl + "=d",
-      }));
+      const updatedData = data.mediaItems;
 
       setPhotos((prevPhotos) => [...prevPhotos, ...updatedData]);
       setNextPageToken(data.nextPageToken || "");
@@ -64,7 +61,7 @@ export default function PhotoAlbum() {
   return (
     <Layout>
       <Helmet
-        title={album.title + ` | Tábor Vysočina 3. turnus`}
+        title={album.name + ` | Tábor Vysočina 3. turnus`}
         meta={[
           {
             name: `description`,
@@ -85,11 +82,11 @@ export default function PhotoAlbum() {
               <div className="grid">
                 {photos.map((photo, index) => (
                   <div
-                    key={photo.id || `${index}-${photo.baseUrl}`}
+                    key={photo.id || `${index}-${photo.thumbnailUrl}`}
                     className="grid-item"
                   >
                     <img
-                      src={photo.baseUrl}
+                      src={photo.thumbnailUrl}
                       alt="Album Photo"
                       width="200"
                       onClick={() => {
@@ -118,13 +115,13 @@ export default function PhotoAlbum() {
 
               {isOpen && (
                 <Lightbox
-                  mainSrc={photos[lightboxIndex]?.highResUrl}
+                  mainSrc={photos[lightboxIndex]?.previewUrl}
                   nextSrc={
-                    photos[(lightboxIndex + 1) % photos.length]?.highResUrl
+                    photos[(lightboxIndex + 1) % photos.length]?.previewUrl
                   }
                   prevSrc={
                     photos[(lightboxIndex + photos.length - 1) % photos.length]
-                      ?.highResUrl
+                      ?.previewUrl
                   }
                   onCloseRequest={() => {
                     setLightboxIndex(null);
