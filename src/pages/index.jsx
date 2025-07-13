@@ -4,7 +4,7 @@ import Articles from '../components/Articles'
 
 import Layout from '../components/Layout'
 
-import cover from "../img/velikonoce2025cover.png";
+import cover from "../img/leto2025cover.png";
 import kamaradi from "../img/kamaradi_ikona.svg"
 import catapult from "../img/catapult_ikona.svg"
 import dobro from "../img/dobro_ikona.svg"
