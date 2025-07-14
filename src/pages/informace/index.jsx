@@ -35,92 +35,104 @@ export default class Informace extends React.Component {
           <div className="dotazy">
             <h1>Nejčastější dotazy</h1>
             <ul className="questions questions-one">
-              <Link
-                className="link-questions"
-                to="arealFoto"
-                smooth={true}
-                duration={500}
-              >
-                <p>Kde děti bydlí</p>
-                <img
-                  src={arrow}
-                  alt="arrow icon"
-                  width={20}
-                  className="arrow-down"
-                />
-              </Link>
-              <Link
-                className="link-questions"
-                to="vybaveniFoto"
-                smooth={true}
-                duration={500}
-              >
-                <p>Co mají na táboře k dispozici</p>
-                <img
-                  src={arrow}
-                  alt="arrow icon"
-                  width={20}
-                  className="arrow-down"
-                />
-              </Link>
-              <Link
-                className="link-questions"
-                to="okoliFoto"
-                smooth={true}
-                duration={500}
-              >
-                <p>Kam chodí mimo tábor</p>
-                <img
-                  src={arrow}
-                  alt="arrow icon"
-                  width={20}
-                  className="arrow-down"
-                />
-              </Link>
+              <li>
+                <Link
+                  className="link-questions"
+                  to="arealFoto"
+                  smooth={true}
+                  duration={500}
+                >
+                  <p>Kde děti bydlí</p>
+                  <img
+                    src={arrow}
+                    alt="arrow icon"
+                    width={20}
+                    className="arrow-down"
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="link-questions"
+                  to="vybaveniFoto"
+                  smooth={true}
+                  duration={500}
+                >
+                  <p>Co mají na táboře k dispozici</p>
+                  <img
+                    src={arrow}
+                    alt="arrow icon"
+                    width={20}
+                    className="arrow-down"
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="link-questions"
+                  to="okoliFoto"
+                  smooth={true}
+                  duration={500}
+                >
+                  <p>Kam chodí mimo tábor</p>
+                  <img
+                    src={arrow}
+                    alt="arrow icon"
+                    width={20}
+                    className="arrow-down"
+                  />
+                </Link>
+              </li>
             </ul>
             <ul className="questions questions-two">
-              <Link
-                className="link-questions"
-                to="things-needed"
-                smooth={true}
-                duration={500}
-              >
-                <p>Co si vzít s sebou na tábor</p>
-                <img
-                  src={arrow}
-                  alt="arrow icon"
-                  width={20}
-                  className="arrow-down"
-                />
-              </Link>
-              <Link
-                className="link-questions"
-                to="visits"
-                smooth={true}
-                duration={500}
-              >
-                <p>Můžu dítě navštívit</p>
-                <img
-                  src={arrow}
-                  alt="arrow icon"
-                  width={20}
-                  className="arrow-down"
-                />
-              </Link>
-              <Link
-                className="link-questions"
-                to="post"
-                smooth={true}
-                duration={500}
-              >
-                <p>Posílání pošty a balíčků</p>
-                <img
-                  src={arrow}
-                  alt="arrow icon"
-                  width={20}
-                  className="arrow-down"
-                />
-              </Link>
+              <li>
+                <Link
+                  className="link-questions"
+                  to="things-needed"
+                  smooth={true}
+                  duration={500}
+                >
+                  <p>Co si vzít s sebou na tábor</p>
+                  <img
+                    src={arrow}
+                    alt="arrow icon"
+                    width={20}
+                    className="arrow-down"
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="link-questions"
+                  to="visits"
+                  smooth={true}
+                  duration={500}
+                >
+                  <p>Můžu dítě navštívit</p>
+                  <img
+                    src={arrow}
+                    alt="arrow icon"
+                    width={20}
+                    className="arrow-down"
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="link-questions"
+                  to="post"
+                  smooth={true}
+                  duration={500}
+                >
+                  <p>Posílání pošty a balíčků</p>
+                  <img
+                    src={arrow}
+                    alt="arrow icon"
+                    width={20}
+                    className="arrow-down"
+                  />
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="grid-informace">

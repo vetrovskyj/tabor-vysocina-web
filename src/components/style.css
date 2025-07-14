@@ -1052,20 +1052,21 @@ nav {
     grid-column: 2/3
 }
 
-.link-questions {
+.questions li {
     list-style: none;
     padding: 10px 0 10px 20px;
     border-bottom: 2px solid white
 }
 
-.link-questions li a {
+.dotazy ul li .link-questions {
     color: #fff;
     font-size: 22px;
     text-decoration: none
 }
 
-.link-questions li:hover {
+.dotazy ul li:hover {
     background-color: #113B49;
+    cursor: pointer;
 }
 
 .arrow-down {
@@ -1239,16 +1240,16 @@ nav {
     .fotky-informace p {
         font-size: 16px
     }
-    .link-questions p {
+    .questions p {
         font-size: 16px
     }
-    .link-questions li {
+    .dotazy ul li {
         background-color: #fda94a
     }
     .dotazy ul {
         background-color: transparent
     }
-    .link-questions img {
+    .questions img {
         display: flex;
         align-items: center
     }
@@ -1352,7 +1353,7 @@ nav {
     .fotky-informace p {
         font-size: 14px
     }
-    .link-questions p {
+    .questions p {
         font-size: 14px
     }
     .things-needed li {
@@ -1392,7 +1393,7 @@ nav {
         grid-template-rows: 2fr 3fr 3fr;
         row-gap: 0
     }
-    .link-questions-one {
+    .questions-one {
         grid-column: 1/3;
         grid-row: 2/3
     }
@@ -1436,7 +1437,7 @@ nav {
     .fotky-informace p {
         font-size: 12px
     }
-    .link-questions p {
+    .questions p {
         font-size: 12px
     }
     .things-needed li {
@@ -1504,7 +1505,7 @@ nav {
     .fotky-informace p {
         font-size: 11px
     }
-    .link-questions p {
+    .questions p {
         font-size: 11px
     }
     .things-needed li {
