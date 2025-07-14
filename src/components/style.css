@@ -1058,13 +1058,13 @@ nav {
     border-bottom: 2px solid white
 }
 
-.dotazy ul li a {
+.link-questions li a {
     color: #fff;
     font-size: 22px;
     text-decoration: none
 }
 
-.dotazy ul li:hover {
+.link-questions li:hover {
     background-color: #113B49;
 }
 
@@ -1242,7 +1242,7 @@ nav {
     .link-questions p {
         font-size: 16px
     }
-    .dotazy ul li {
+    .link-questions li {
         background-color: #fda94a
     }
     .dotazy ul {
