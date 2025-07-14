@@ -1,15 +1,16 @@
-import React from 'react'
+import React from "react";
 
-import Layout from '../../components/Layout'
-import Helmet from "react-helmet"
+import Layout from "../../components/Layout";
+import Helmet from "react-helmet";
+import { Link, animateScroll as scroll } from "react-scroll";
 
-import arrow from "../../img/arrow-icon.svg"
-import budova from "../../img/budova.jpg"
-import rybnik from "../../img/rybnik.jpg"
-import hriste from "../../img/hriste.jpg"
-import tricko from "../../img/tshirt-icon-orange.svg"
-import hygiena from "../../img/hygiene-icon-orange.svg"
-import karty from "../../img/cards-icon-orange.svg"
+import arrow from "../../img/arrow-icon.svg";
+import budova from "../../img/budova.jpg";
+import rybnik from "../../img/rybnik.jpg";
+import hriste from "../../img/hriste.jpg";
+import tricko from "../../img/tshirt-icon-orange.svg";
+import hygiena from "../../img/hygiene-icon-orange.svg";
+import karty from "../../img/cards-icon-orange.svg";
 
 export default class Informace extends React.Component {
   render() {
@@ -20,85 +21,106 @@ export default class Informace extends React.Component {
           meta={[
             {
               name: `description`,
-              content: 'Informace o organizaci tábora Vysočina 3. turnus v Novém Městě na Moravě. Popis lokality, zázemí, prostředí i seznam věcí, co si mají účastníci vzít s sebou.',
+              content:
+                "Informace o organizaci tábora Vysočina 3. turnus v Novém Městě na Moravě. Popis lokality, zázemí, prostředí i seznam věcí, co si mají účastníci vzít s sebou.",
             },
             {
               name: "keywords",
-              content: 'Vysočina, Dětský tábor, Nové Město na Moravě, 3. turnus, lokalita, prostředí, zázemí, věci s sebou, potřeby',
+              content:
+                "Vysočina, Dětský tábor, Nové Město na Moravě, 3. turnus, lokalita, prostředí, zázemí, věci s sebou, potřeby",
             },
-          ]} />
+          ]}
+        />
         <main className="telo-lide">
           <div className="dotazy">
             <h1>Nejčastější dotazy</h1>
             <ul className="questions questions-one">
-              <li>
-                <a href="#arealFoto">
-                  <p>Kde děti bydlí</p>
-                  <img
-                    src={arrow}
-                    alt="arrow icon"
-                    width={20}
-                    className="arrow-down"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#vybaveniFoto">
-                  <p>Co mají na táboře k dispozici</p>
-                  <img
-                    src={arrow}
-                    alt="arrow icon"
-                    width={20}
-                    className="arrow-down"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#okoliFoto">
-                  <p>Kam chodí mimo tábor</p>
-                  <img
-                    src={arrow}
-                    alt="arrow icon"
-                    width={20}
-                    className="arrow-down"
-                  />
-                </a>
-              </li>
+              <Link
+                className="link-questions"
+                to="arealFoto"
+                smooth={true}
+                duration={500}
+              >
+                <p>Kde děti bydlí</p>
+                <img
+                  src={arrow}
+                  alt="arrow icon"
+                  width={20}
+                  className="arrow-down"
+                />
+              </Link>
+              <Link
+                className="link-questions"
+                to="vybaveniFoto"
+                smooth={true}
+                duration={500}
+              >
+                <p>Co mají na táboře k dispozici</p>
+                <img
+                  src={arrow}
+                  alt="arrow icon"
+                  width={20}
+                  className="arrow-down"
+                />
+              </Link>
+              <Link
+                className="link-questions"
+                to="okoliFoto"
+                smooth={true}
+                duration={500}
+              >
+                <p>Kam chodí mimo tábor</p>
+                <img
+                  src={arrow}
+                  alt="arrow icon"
+                  width={20}
+                  className="arrow-down"
+                />
+              </Link>
             </ul>
             <ul className="questions questions-two">
-              <li>
-                <a href="#things-needed">
-                  <p>Co si vzít s sebou na tábor</p>
-                  <img
-                    src={arrow}
-                    alt="arrow icon"
-                    width={20}
-                    className="arrow-down"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#visits">
-                  <p>Můžu dítě navštívit</p>
-                  <img
-                    src={arrow}
-                    alt="arrow icon"
-                    width={20}
-                    className="arrow-down"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#post">
-                  <p>Posílání pošty a balíčků</p>
-                  <img
-                    src={arrow}
-                    alt="arrow icon"
-                    width={20}
-                    className="arrow-down"
-                  />
-                </a>
-              </li>
+              <Link
+                className="link-questions"
+                to="things-needed"
+                smooth={true}
+                duration={500}
+              >
+                <p>Co si vzít s sebou na tábor</p>
+                <img
+                  src={arrow}
+                  alt="arrow icon"
+                  width={20}
+                  className="arrow-down"
+                />
+              </Link>
+              <Link
+                className="link-questions"
+                to="visits"
+                smooth={true}
+                duration={500}
+              >
+                <p>Můžu dítě navštívit</p>
+                <img
+                  src={arrow}
+                  alt="arrow icon"
+                  width={20}
+                  className="arrow-down"
+                />
+              </Link>
+              <Link
+                className="link-questions"
+                to="post"
+                smooth={true}
+                duration={500}
+              >
+                <p>Posílání pošty a balíčků</p>
+                <img
+                  src={arrow}
+                  alt="arrow icon"
+                  width={20}
+                  className="arrow-down"
+                />
+              </Link>
             </ul>
           </div>
           <div className="grid-informace">
@@ -106,7 +128,10 @@ export default class Informace extends React.Component {
             <div className="areal scroll-reveal-ambiente" id="areal">
               <h2>Areál</h2>
               <p>
-                Děti jsou ubytované v rekreačním areálu PČR. Mladší táborníci bydlí v hlavní budově, ti starší v dřevěných chatkách. V hlavní budově je jídelna, toalety a sprchy. Do areálu kromě zaměstnanců nikdo cizí nesmí.
+                Děti jsou ubytované v rekreačním areálu PČR. Mladší táborníci
+                bydlí v hlavní budově, ti starší v dřevěných chatkách. V hlavní
+                budově je jídelna, toalety a sprchy. Do areálu kromě zaměstnanců
+                nikdo cizí nesmí.
               </p>
             </div>
             <div className="arealFoto scroll-reveal-ambiente" id="arealFoto">
@@ -115,16 +140,25 @@ export default class Informace extends React.Component {
             <div className="vybaveni scroll-reveal-ambiente" id="vybaveni">
               <h2>Vybavení</h2>
               <p>
-                Kromě příjemného a čistého ubytování jsou v areálu k dispozici hřiště, altán, sportovní vybavení, ohniště a další společenské místnosti. Pro léčení drobných zranění a nemocí nám slouží marodka v oddělené budově.
+                Kromě příjemného a čistého ubytování jsou v areálu k dispozici
+                hřiště, altán, sportovní vybavení, ohniště a další společenské
+                místnosti. Pro léčení drobných zranění a nemocí nám slouží
+                marodka v oddělené budově.
               </p>
             </div>
-            <div className="vybaveniFoto scroll-reveal-ambiente" id="vybaveniFoto">
+            <div
+              className="vybaveniFoto scroll-reveal-ambiente"
+              id="vybaveniFoto"
+            >
               <img src={hriste} alt="hriste" />
             </div>
             <div className="okoli scroll-reveal-ambiente" id="okoli">
               <h2>Okolí</h2>
               <p>
-                Nejraději hrajeme hry v přírodě, a proto jsme rádi, že nás obklopují krásné lesy, louky a vodní toky Žďárských vrchů. Zároveň se areál nachází i v blízkosti města, do kterého v průběhu tábora děti rády zavítají.
+                Nejraději hrajeme hry v přírodě, a proto jsme rádi, že nás
+                obklopují krásné lesy, louky a vodní toky Žďárských vrchů.
+                Zároveň se areál nachází i v blízkosti města, do kterého v
+                průběhu tábora děti rády zavítají.
               </p>
             </div>
             <div className="okoliFoto scroll-reveal-ambiente" id="okoliFoto">
@@ -137,11 +171,7 @@ export default class Informace extends React.Component {
               <h2>Oblečení a obuv</h2>
               <div className="card-content">
                 <div className="card-img">
-                  <img
-                    src={tricko}
-                    alt="obleceni ikona"
-                    width={200}
-                  />
+                  <img src={tricko} alt="obleceni ikona" width={200} />
                 </div>
                 <ul className="clothes-list">
                   <li>dostatek teplých i normálních ponožek</li>
@@ -167,11 +197,7 @@ export default class Informace extends React.Component {
               <h2>Hygiena</h2>
               <div className="card-content">
                 <div className="card-img">
-                  <img
-                    src={hygiena}
-                    alt="hygiena ikona"
-                    width={200}
-                  />
+                  <img src={hygiena} alt="hygiena ikona" width={200} />
                 </div>
                 <ul className="hygiene-list">
                   <li>ručníky</li>
@@ -188,11 +214,7 @@ export default class Informace extends React.Component {
               <h2>Ostatní</h2>
               <div className="card-content">
                 <div className="card-img">
-                  <img
-                    src={karty}
-                    alt="others ikona"
-                    width={200}
-                  />
+                  <img src={karty} alt="others ikona" width={200} />
                 </div>
                 <ul className="others-list">
                   <li>hry (např. karty)</li>
@@ -209,18 +231,25 @@ export default class Informace extends React.Component {
             <div className="section visits">
               <h3>Návštěvy</h3>
               <p>
-              Aby měli všichni táborníci stejné podmínky a užili si nerušeně celý tábor, návštěvy do areálu nepovolujeme. Vždy nás (i děti) ale potěší, když můžeme předávat radost a pozdravy třeba skrze poslané pohledy nebo menší balíčky.
+                Aby měli všichni táborníci stejné podmínky a užili si nerušeně
+                celý tábor, návštěvy do areálu nepovolujeme. Vždy nás (i děti)
+                ale potěší, když můžeme předávat radost a pozdravy třeba skrze
+                poslané pohledy nebo menší balíčky.
               </p>
             </div>
             <div className="section post" id="post">
               <h3>Pošta</h3>
               <p>
-              Do tábora není problém poslat dopis, pohled nebo menší balíček. Adresu najdete v <a href='../kontakt/'>kontaktech</a>. Ze zkušenosti víme, že pohledy dělají radost i dospělým, a proto doporučujeme dětem pár pohledů předepsat, ať také mohou odpovědět.
+                Do tábora není problém poslat dopis, pohled nebo menší balíček.
+                Adresu najdete v <a href="../kontakt/">kontaktech</a>. Ze
+                zkušenosti víme, že pohledy dělají radost i dospělým, a proto
+                doporučujeme dětem pár pohledů předepsat, ať také mohou
+                odpovědět.
               </p>
             </div>
           </div>
         </main>
-      </Layout >
-    )
+      </Layout>
+    );
   }
 }

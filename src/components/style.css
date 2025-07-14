@@ -1052,7 +1052,7 @@ nav {
     grid-column: 2/3
 }
 
-.questions li {
+.link-questions {
     list-style: none;
     padding: 10px 0 10px 20px;
     border-bottom: 2px solid white
@@ -1239,7 +1239,7 @@ nav {
     .fotky-informace p {
         font-size: 16px
     }
-    .questions p {
+    .link-questions p {
         font-size: 16px
     }
     .dotazy ul li {
@@ -1248,7 +1248,7 @@ nav {
     .dotazy ul {
         background-color: transparent
     }
-    .questions img {
+    .link-questions img {
         display: flex;
         align-items: center
     }
@@ -1352,7 +1352,7 @@ nav {
     .fotky-informace p {
         font-size: 14px
     }
-    .questions p {
+    .link-questions p {
         font-size: 14px
     }
     .things-needed li {
@@ -1392,7 +1392,7 @@ nav {
         grid-template-rows: 2fr 3fr 3fr;
         row-gap: 0
     }
-    .questions-one {
+    .link-questions-one {
         grid-column: 1/3;
         grid-row: 2/3
     }
@@ -1436,7 +1436,7 @@ nav {
     .fotky-informace p {
         font-size: 12px
     }
-    .questions p {
+    .link-questions p {
         font-size: 12px
     }
     .things-needed li {
@@ -1504,7 +1504,7 @@ nav {
     .fotky-informace p {
         font-size: 11px
     }
-    .questions p {
+    .link-questions p {
         font-size: 11px
     }
     .things-needed li {

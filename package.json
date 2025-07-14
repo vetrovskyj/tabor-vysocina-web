@@ -17,6 +17,7 @@
         "react-image-lightbox": "^5.1.4",
         "react-router-dom": "^6.30.0",
         "react-scripts": "5.0.1",
+        "react-scroll": "^1.9.3",
         "react-slick": "^0.30.3",
         "simple-react-lightbox": "^3.6.8",
         "slick-carousel": "^1.8.1",
