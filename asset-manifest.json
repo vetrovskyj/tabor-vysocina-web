@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.fdbf26c7.css",
+    "main.css": "/static/css/main.b106bc0b.css",
     "main.js": "/static/js/main.dd7f1b66.js",
     "static/media/budova.jpg": "/static/media/budova.e2ac36f2b3719e0f016b.jpg",
     "static/media/foto1.jpg": "/static/media/foto1.d17cc24e01b7e8e97f57.jpg",
@@ -23,11 +23,11 @@
     "index.html": "/index.html",
     "static/media/tshirt-icon-orange.svg": "/static/media/tshirt-icon-orange.f64c54b39162e41f97edf78768d4a972.svg",
     "static/media/arrow-icon.svg": "/static/media/arrow-icon.e6c1d42292ac59d52ccd1a55303aa753.svg",
-    "main.fdbf26c7.css.map": "/static/css/main.fdbf26c7.css.map",
+    "main.b106bc0b.css.map": "/static/css/main.b106bc0b.css.map",
     "main.dd7f1b66.js.map": "/static/js/main.dd7f1b66.js.map"
   },
   "entrypoints": [
-    "static/css/main.fdbf26c7.css",
+    "static/css/main.b106bc0b.css",
     "static/js/main.dd7f1b66.js"
   ]
 }
