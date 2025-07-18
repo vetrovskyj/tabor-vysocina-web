@@ -28,7 +28,7 @@ export default function PhotoAlbum() {
       );
       const data = await response.json();
 
-      console.log(data)
+      console.log(data);
 
       const updatedData = data.mediaItems;
 
@@ -58,6 +58,35 @@ export default function PhotoAlbum() {
     return <div>Album not found</div>;
   }
 
+  function groupPhotosByDate(photos) {
+    console.log("Grouping photos, input array:", photos);
+
+    const grouped = {};
+    photos.forEach((photo) => {
+      // Defensive: log the individual photo object to catch missing fields
+      console.log("Processing photo:", photo);
+
+      const date = photo.createdTime ? new Date(photo.createdTime) : null;
+      if (!date) {
+        console.warn("Photo missing createdTime:", photo);
+        return;
+      }
+      const dateKey = `${date.getDate()}.${
+        date.getMonth() + 1
+      }.${date.getFullYear()}`;
+      if (!grouped[dateKey]) grouped[dateKey] = [];
+      grouped[dateKey].push(photo);
+    });
+
+    const groupedArr = Object.entries(grouped).sort(
+      (a, b) => new Date(b[1][0].createdTime) - new Date(a[1][0].createdTime)
+    );
+
+    console.log("Grouped photos by date:", groupedArr);
+
+    return groupedArr;
+  }
+
   return (
     <Layout>
       <Helmet
@@ -79,25 +108,40 @@ export default function PhotoAlbum() {
         <div className="gallery-container">
           {photos.length > 0 ? (
             <>
-              <div className="grid">
-                {photos.map((photo, index) => (
-                  <div
-                    key={photo.id || `${index}-${photo.thumbnailUrl}`}
-                    className="grid-item"
-                  >
-                    <img
-                      src={photo.thumbnailUrl}
-                      alt="Album Photo"
-                      width="200"
-                      onClick={() => {
-                        setLightboxIndex(index);
-                        setIsOpen(true);
-                      }}
-                      style={{ cursor: "pointer" }}
-                    />
+              {groupPhotosByDate(photos).map(([date, group]) => (
+                <div key={date} style={{ marginBottom: "2rem" }}>
+                  <p className="date-photos">{"Nahráno " + date}</p>
+                  <div className="grid">
+                    {group.map((photo, index) => {
+                      // Get the photo's absolute index in the photos array
+                      const globalIndex = photos.findIndex(
+                        (p) => p.id === photo.id
+                      );
+                      return (
+                        <div
+                          key={
+                            photo.id || `${globalIndex}-${photo.thumbnailUrl}`
+                          }
+                          className="grid-item"
+                        >
+                          <img
+                            className="album-photo"
+                            src={photo.thumbnailUrl}
+                            loading="lazy"
+                            alt="Album Photo"
+                            width="200"
+                            onClick={() => {
+                              setLightboxIndex(globalIndex);
+                              setIsOpen(true);
+                            }}
+                            style={{ cursor: "pointer" }}
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
 
               {nextPageToken && (
                 <div
