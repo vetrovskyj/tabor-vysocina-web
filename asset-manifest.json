@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.b17b9499.css",
-    "main.js": "/static/js/main.705f666c.js",
+    "main.css": "/static/css/main.ac98a343.css",
+    "main.js": "/static/js/main.2d7fcced.js",
     "static/media/budova.jpg": "/static/media/budova.e2ac36f2b3719e0f016b.jpg",
     "static/media/foto1.jpg": "/static/media/foto1.d17cc24e01b7e8e97f57.jpg",
     "static/media/hriste.jpg": "/static/media/hriste.90ad16478d95168cdcb2.jpg",
@@ -23,11 +23,11 @@
     "index.html": "/index.html",
     "static/media/tshirt-icon-orange.svg": "/static/media/tshirt-icon-orange.f64c54b39162e41f97edf78768d4a972.svg",
     "static/media/arrow-icon.svg": "/static/media/arrow-icon.e6c1d42292ac59d52ccd1a55303aa753.svg",
-    "main.b17b9499.css.map": "/static/css/main.b17b9499.css.map",
-    "main.705f666c.js.map": "/static/js/main.705f666c.js.map"
+    "main.ac98a343.css.map": "/static/css/main.ac98a343.css.map",
+    "main.2d7fcced.js.map": "/static/js/main.2d7fcced.js.map"
   },
   "entrypoints": [
-    "static/css/main.b17b9499.css",
-    "static/js/main.705f666c.js"
+    "static/css/main.ac98a343.css",
+    "static/js/main.2d7fcced.js"
   ]
 }
